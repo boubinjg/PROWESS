@@ -1,0 +1,7 @@
+{
+    "domain":"localhost",
+    "backendPort":"3001",
+    "databaseIP":"192.168.0.2",
+    "databasePort":"3306",
+    "databasePW":"my-secret-pw",
+}

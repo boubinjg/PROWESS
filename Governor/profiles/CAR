@@ -1,0 +1,8 @@
+name: CAR Vehicle Testbed
+RAM: 2
+CPUs: 2
+Sensors:
+- None
+Hardware:
+- ECM
+EventColor: 32a852

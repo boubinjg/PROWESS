@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.4c7b0eb7.chunk.css",
+    "main.js": "/static/js/main.43040f31.chunk.js",
+    "main.js.map": "/static/js/main.43040f31.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.3c617614.js",
+    "runtime-main.js.map": "/static/js/runtime-main.3c617614.js.map",
+    "static/css/2.cf0b8ff9.chunk.css": "/static/css/2.cf0b8ff9.chunk.css",
+    "static/js/2.a6e2b90a.chunk.js": "/static/js/2.a6e2b90a.chunk.js",
+    "static/js/2.a6e2b90a.chunk.js.map": "/static/js/2.a6e2b90a.chunk.js.map",
+    "static/js/3.3b6ef640.chunk.js": "/static/js/3.3b6ef640.chunk.js",
+    "static/js/3.3b6ef640.chunk.js.map": "/static/js/3.3b6ef640.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.cf0b8ff9.chunk.css.map": "/static/css/2.cf0b8ff9.chunk.css.map",
+    "static/css/main.4c7b0eb7.chunk.css.map": "/static/css/main.4c7b0eb7.chunk.css.map",
+    "static/js/2.a6e2b90a.chunk.js.LICENSE.txt": "/static/js/2.a6e2b90a.chunk.js.LICENSE.txt",
+    "static/media/dhtmlxscheduler_material.css": "/static/media/tree_arrow.ece45f84.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3c617614.js",
+    "static/css/2.cf0b8ff9.chunk.css",
+    "static/js/2.a6e2b90a.chunk.js",
+    "static/css/main.4c7b0eb7.chunk.css",
+    "static/js/main.43040f31.chunk.js"
+  ]
+}

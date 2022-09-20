@@ -1,0 +1,8 @@
+name: Cummins ECM Testbed
+RAM: 16
+CPUs: 8
+Sensors:
+- None
+Hardware:
+- Cummins ECM
+EventColor: 325ea8

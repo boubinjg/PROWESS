@@ -1,0 +1,28 @@
+[
+                {
+                    "uid":"name",
+                    "name":"Experiment Name",
+                    "required":true,
+                    "type":"str"
+                },
+
+                {
+                         "uid":"sec1",
+                            "name":"Experiment Containers",
+                            "type":"sec",
+                            "sub": [
+                                {
+                                    "uid":"containers",
+                                    "name":"Specify one or more containers from Dockerhub which comprise your experiment",
+                                    "minLength":1,
+                                    "type":"str_il"
+                                }
+                            ]
+               },
+                {
+                    "uid":"unic_color",
+                    "name":"What's the best color of unicorn?",
+                    "tip":"Try to use this tip: https://youtu.be/5phx8eycHZ4",
+                    "type":"color"
+                }
+            ]

@@ -1,0 +1,8 @@
+name: Don Scott Airport
+RAM: 2
+CPUs: 1
+Sensors:
+- Microphone 1
+Hardware:
+- None
+EventColor: a8324e

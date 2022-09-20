@@ -1,0 +1,9 @@
+name: Pomerene Lab
+RAM: 32
+CPUs: 12
+Sensors:
+- SDR 2
+- SDR 1
+Hardware:
+- None
+EventColor: 6632a8

@@ -1,0 +1,9 @@
+name: corehub
+RAM: 100
+CPUs: 24
+Sensors:
+- Microphone 1
+- Microphone 2
+Hardware:
+- None
+EventColor: 329ea8

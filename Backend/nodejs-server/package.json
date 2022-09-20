@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-server",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "mysql": "^2.18.1",
+    "passport": "^0.4.1",
+    "passport-saml": "^3.1.0",
+    "serve": "^11.3.2"
+  }
+}
