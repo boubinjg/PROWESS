@@ -99,7 +99,7 @@ class Delete extends Component {
         //this.setState({id: this.state.id+1})
 
         $.ajax({
-            url: cfg.domain+':'+cfg.backendPort+'/post',
+            url: 'https://'+cfg.domain+':'+cfg.backendPort+'/post',
             type: 'POST',
             data: jsondata,
             success: function(msg) {

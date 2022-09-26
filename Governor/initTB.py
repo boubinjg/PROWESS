@@ -40,7 +40,7 @@ def loadTestbeds(cursor):
 def init():
     cnx = mysql.connector.connect(user='root',
 			  password='my-secret-pw',
-			  host='192.168.0.2',
+			  host='localhost',
 			  port='3306',
 			  use_pure=False)
     cursor = cnx.cursor()

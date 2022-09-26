@@ -1,7 +1,7 @@
 {
-    "domain":"localhost",
+    "domain":"iot.lab.tdai.osu.edu",
     "backendPort":"3001",
-    "databaseIP":"192.168.0.2",
+    "databaseIP":"localhost",
     "databasePort":"3306",
-    "databasePW":"my-secret-pw",
+    "databasePW":"my-secret-pw"
 }
