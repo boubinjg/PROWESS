@@ -3,5 +3,8 @@
     "backendPort":"3001",
     "databaseIP":"localhost",
     "databasePort":"3306",
-    "databasePW":"my-secret-pw"
+    "databasePW":"my-secret-pw",
+    "sslcert":"secret/cert.cer",
+    "publickey":"secret/client-key.pem",
+    "webpath":"/var/www/iot.lab.tdai.osu.edu/html"
 }

@@ -1,4 +1,5 @@
 name: Don Scott Airport
+hostname: tdai-r815
 RAM: 2
 CPUs: 1
 Sensors:

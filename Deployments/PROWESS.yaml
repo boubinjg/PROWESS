@@ -14,18 +14,20 @@ spec:
       labels:
         app: PROWESS
     spec:
-      hostNetwork: true 
+      hostNetwork: true
       containers:
-      - image: boubinjg/webappdb:latest
-        name: webappdb-d
+      - image: prowess-db:latest
+        name: prowess-db
         ports:
         - containerPort: 3306
         env:
         - name: "MYSQL_ROOT_PASSWORD"
           value: "my-secret-pw"
         args: ["--default-authentication-plugin=mysql_native_password"]
-
-      - image: boubinjg/backend:latest
-        name: backend
+        imagePullPolicy: IfNotPresent
+      - image: prowess-backend:latest
+        name: prowess-backend
         ports:
         - containerPort: 3001
+        imagePullPolicy: IfNotPresent
+

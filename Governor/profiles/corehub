@@ -1,4 +1,5 @@
 name: corehub
+hostname: tdai-r815
 RAM: 100
 CPUs: 24
 Sensors:

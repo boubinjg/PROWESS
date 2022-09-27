@@ -32,10 +32,10 @@ app.use(bodyParser.urlencoded({ extend: true }));
 
 app.get("/testbeds", (req,res) => {
     var con = mysql.createConnection({
-        host: "192.168.0.2",
+        host: cfg.databaseIP,
         user: "root",
-        password: "my-secret-pw",
-        port: "3306"
+        password: cfg.databasePW,
+        port: cfg.databasePort
     });
 
     con.connect(function(err) {
@@ -60,10 +60,10 @@ app.get("/testbeds", (req,res) => {
 
 app.get("/testbedres", (req, res) => {
     var con = mysql.createConnection({
-        host: "192.168.0.2",
+        host: cfg.databaseIP,
         user: "root",
-        password: "my-secret-pw",
-        port: "3306"
+        password: cfg.databasePW,
+        port: cfg.databasePort
     });
 
     var testbed = req.param('name')
@@ -97,10 +97,10 @@ app.get("/testbedres", (req, res) => {
 
 app.get("/api", (req, res) => {
     var con = mysql.createConnection({
-        host: "192.168.0.2",
+        host: cfg.databaseIP,
         user: "root",
-        password: "my-secret-pw",
-        port: "3306"
+        password: cfg.databasePW,
+        port: cfg.databasePort
     });
 
     con.connect(function(err) {
@@ -137,10 +137,10 @@ app.get("/api", (req, res) => {
 
 app.get("/download", (req, res) => {
     var con = mysql.createConnection({
-        host: "192.168.0.2",
+        host: cfg.databaseIP,
         user: "root",
-        password: "my-secret-pw",
-        port: "3306"
+        password: cfg.databasePW,
+        port: cfg.databasePort
     });
 
     var user = req.param('user')
@@ -189,12 +189,11 @@ app.post("/postDel", (req, res) =>{
     var sql = 'DELETE from calendar.calendar_entries where user = \''+req.body.user+'\' and id='+req.body.idx;
     console.log(sql)
     var con = mysql.createConnection({
-        host: "192.168.0.2",
+        host: cfg.databaseIP,
         user: "root",
-        password: "my-secret-pw",
-        port: "3306"
+        password: cfg.databasePW,
+        port: cfg.databasePort
     });
-
     con.connect(function(err) {
         if (err) throw err;
         console.log("Connected To Database")
@@ -215,12 +214,11 @@ app.post("/postExps", (req, res) =>{
     console.log(sql)
     var ret = []
     var con = mysql.createConnection({
-        host: "192.168.0.2",
+        host: cfg.databaseIP,
         user: "root",
-        password: "my-secret-pw",
-        port: "3306"
+        password: cfg.databasePW,
+        port: cfg.databasePort
     });
-
     con.connect(function(err) {
         if (err) throw err;
         console.log("Connected To Database")
@@ -308,12 +306,11 @@ app.post("/post", (req, res) => {
 
     console.log(sql)
     var con = mysql.createConnection({
-        host: "192.168.0.2",
+        host: cfg.databaseIP,
         user: "root",
-        password: "my-secret-pw",
-        port: "3306"
+        password: cfg.databasePW,
+        port: cfg.databasePort
     });
-
     con.connect(function(err) {
         if (err) throw err;
         console.log("Connected To Database")

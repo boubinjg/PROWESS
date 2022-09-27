@@ -1,4 +1,5 @@
 name: Cummins ECM Testbed
+hostname: tdai-r815
 RAM: 16
 CPUs: 8
 Sensors:

@@ -148,7 +148,7 @@ class App extends Component {
     fetchShib() {
         console.log(cfg.domain)
         console.log('^^^^^^^^^^^^^^^^^')
-	fetch(cfg.domain+'/Shibboleth.sso/Session')
+	fetch('https://'+cfg.domain+'/Shibboleth.sso/Session')
   		.then(response => response.json())
   		.then((jsonData) => {
     		// jsonData is parsed json object received from url
@@ -171,7 +171,7 @@ class App extends Component {
 	console.log('###################')
 	var context = this
         $.ajax({
-            url: cfg.domain+':'+cfg.backendPort+'/testbeds',
+            url: 'https://'+cfg.domain+':'+cfg.backendPort+'/testbeds',
             method: 'GET',
             data: data,
             success: function(response) {

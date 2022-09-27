@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: experiment1
+spec:
+  containers:
+  - image: hello-world
+    name: experiment1-0
+    volumeMounts:
+    - name: volume1-0
+      mountPath: /output
+  volumes:
+  - name: volume1-0
+    hostPath:
+      path: /edgestorage/1-output
+  - name: dev-sdn1
+    hostPath:
+      path: /dev/sdn
+  - name: p371
+    hostPath:
+      path: /home/gnuradio/persistent/1

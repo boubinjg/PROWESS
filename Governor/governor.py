@@ -4,11 +4,14 @@ import time
 import subprocess
 import shutil
 from initTB import init
+import json
 
 jobList = []
 
 waitQueue = []
 runQueue = []
+
+configData = None
 
 class ScheduleItem:
 	startTime: datetime
@@ -27,10 +30,11 @@ class ScheduleItem:
 		self.YAML = YAML
 
 def executeQuery(query):
+	
 	cnx = mysql.connector.connect(user='root',
-			      	      password='my-secret-pw',
-			              host='192.168.0.2',
-			              port='3306',
+			      	      password=configData['databasePW'],
+			              host=configData['databaseIP'],
+			              port=configData['databasePort'],
 			              database='calendar')
 
 	cursor = cnx.cursor()
@@ -76,8 +80,6 @@ def buildCron(job, status):
 	yaml +=	"metadata:\n"
 	yaml += "  name: experiment"+str(uid)+"\n"
 	yaml += "spec:\n"
-	if(sdr):
-		yaml += "  hostNetwork: true\n"
 	yaml +=	"  containers:\n"
 	count = 0
 	for c in containers:
@@ -87,23 +89,12 @@ def buildCron(job, status):
 		yaml += "    volumeMounts:\n"
 		yaml += "    - name: volume"+str(uid)+"-0\n"
 		yaml += "      mountPath: /output\n"
-		if(sdr):
-			yaml += "    - name: dev-sdn"+str(uid)+"\n"
-			yaml += "      mountPath: /dev/sdn\n"
-			yaml += "    - name: p37"+str(uid)+"\n"
-			yaml += "      mountPath: /persistent-37\n"
-
 		vcount = 1
 		for v in volumes:
 			if(v != ''):
 				yaml += "    - name: volume"+str(uid)+"-"+str(vcount)+"\n"
 				yaml += "      mountPath: /"+v+"\n"
 				vcount += 1
-
-	if(sdr):
-		yaml += "    securityContext:\n"
-		yaml += "      privileged: true\n"
-		yaml += "    tty: true\n"
 
 	yaml +=	"  volumes:\n"
 	yaml += "  - name: volume"+str(uid)+"-0\n"
@@ -162,12 +153,6 @@ def addToSchedule(job, uid, Cont, Yaml, name):
 	print('Experiment '+str(uid)+' added to the Wait Queue')
 
 def startJob(job):
-	if(job.sdr):
-		proc = subprocess.Popen(['sudo', 'sysctl', '-w', 'kernel.shmmax=10000000000'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-		out, err = proc.communicate()
-		print(out)
-		print(err)
-
 	if(job.YAML):
 		proc = subprocess.Popen(['kubectl','apply','-f', 'jobs/experiment_YAML'+str(job.uid)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	out, err = proc.communicate()
@@ -275,15 +260,23 @@ def initTestbedTable():
     print('Initializing Testbed Entries in PROWESS DB')
     init()
 
-if __name__ == "__main__":
+def initConfig():
+	global configData
+	f = open('config.json')
+	configData = json.load(f)
 
-        initTestbedTable()
-        exit()
+if __name__ == "__main__":
+       	initConfig()
+       	initTestbedTable()
+        
         while(True):
                 today = date.today().strftime("%d/%m/%Y")
                 now = datetime.now() - timedelta(days = 1)
                 now2 = datetime.now() + timedelta(days=1)
                 freshJobs = checkForNewJobs(today)
+
+                print(freshJobs)
+                exit()
 
                 for job in freshJobs:
                     if(job[0] not in jobList):

@@ -1,4 +1,5 @@
 name: Pomerene Lab
+hostname: tdai-r815
 RAM: 32
 CPUs: 12
 Sensors:

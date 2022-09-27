@@ -4,11 +4,12 @@ import subprocess
 import glob
 import yaml
 import io
+import json
 
 def loadTestbeds(cursor):
 
 	for f in glob.glob('./profiles/*'):
-		cmd = 'INSERT INTO testbed_entries (name, ram, cpus, sensors, hardware, eventcolor) VALUES '
+		cmd = 'INSERT INTO testbed_entries (name, hostname, ram, cpus, sensors, hardware, eventcolor) VALUES '
 
 		with io.open(f, 'r') as stream:
 			data = yaml.safe_load(stream)
@@ -21,6 +22,7 @@ def loadTestbeds(cursor):
 			hwList += i+'+'
 
 		cmd += '(\''+str(data['name'])+'\','
+		cmd += '\''+str(data['hostname'])+'\','
 		cmd += '\''+str(data['RAM'])+'\','
 		cmd += '\''+str(data['CPUs'])+'\','
 		cmd += '\''+sensorsList[:-1]+'\','
@@ -30,7 +32,6 @@ def loadTestbeds(cursor):
 
 		print(cmd)
 		cursor.execute(cmd)
-		print('Done')
 		result=cursor.fetchone()
 		print(result)
 
@@ -38,10 +39,13 @@ def loadTestbeds(cursor):
 
 #Loads all testbed entries present in /profiles into the PROWESS database
 def init():
+    f = open('config.json')
+    configData = json.load(f)
+
     cnx = mysql.connector.connect(user='root',
-			  password='my-secret-pw',
-			  host='localhost',
-			  port='3306',
+			  password=configData['databasePW'],
+			  host=configData['databaseIP'],
+			  port=configData['databasePort'],
 			  use_pure=False)
     cursor = cnx.cursor()
 

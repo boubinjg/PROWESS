@@ -1,4 +1,5 @@
 name: CAR Vehicle Testbed
+hostname: tdai-r815
 RAM: 2
 CPUs: 2
 Sensors:
