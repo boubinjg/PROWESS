@@ -1,18 +1,32 @@
 <?php
-	$servername = '127.0.0.1';
-	$username = "root";
-	$password = "my-secret-pw";
+
+	$cfg_in = file_get_contents('config.json');
+	$json = json_decode($cfg_in, true);
+
+	$servername = $json['databaseIP'];
+	$username = $json['databaseUser'];
+	$password = $json['databasePW'];
 	$dbname = "calendar";
-	$port = "3306";
+	$port = $json['databasePort'];
 
-	$attributes = array('displayName', 'mail', 'eppn',
+	$authtype = $json['authtype'];
+
+	$auth = False;
+
+	if($authtype == '"shibboleth"') {
+		
+		$attributes = array('displayName', 'mail', 'eppn',
                     'givenName', 'sn', 'affiliation', 'unscoped-affiliation');
-
-
-
-	$name = $attributes[0];
-	//if( isset($_SERVER[$name])) {
-	if(true) {
+		
+		$name = $attributes[0];
+		if(isset($_SERVER[$name])) {
+			$auth = True;
+		}
+	} else {
+		$auth = True;
+	}
+	
+	if($auth == True) {
 	
 		$name = $_GET['name'];
 

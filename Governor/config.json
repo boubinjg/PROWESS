@@ -1,10 +1,12 @@
 {
     "domain":"iot.lab.tdai.osu.edu",
     "backendPort":"3001",
-    "databaseIP":"localhost",
+    "databaseIP":"127.0.0.1",
     "databasePort":"3306",
     "databasePW":"my-secret-pw",
+    "databaseUser":"root",
     "sslcert":"secret/cert.cer",
     "publickey":"secret/client-key.pem",
-    "webpath":"/var/www/iot.lab.tdai.osu.edu/html"
+    "webpath":"/var/www/iot.lab.tdai.osu.edu/html",
+    "authtype":"none"
 }

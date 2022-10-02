@@ -99,7 +99,7 @@ class Delete extends Component {
         //this.setState({id: this.state.id+1})
 
         $.ajax({
-            url: 'https://'+cfg.domain+':'+cfg.backendPort+'/post',
+            url: 'https://'+cfg.domain+'php/post.php',
             type: 'POST',
             data: jsondata,
             success: function(msg) {
@@ -137,7 +137,7 @@ class Delete extends Component {
         var jsondata = {user: this.state.user}
 
         $.ajax({
-            url: 'https://'+cfg.domain+':'+cfg.backendPort+'/postExps',
+            url: 'https://'+cfg.domain+'/php/postExps.php',
             type: 'POST',
             data: jsondata,
             success: function(response) {
@@ -152,7 +152,7 @@ class Delete extends Component {
         var context = this;
 
         $.ajax({
-            url: 'https://'+cfg.domain+':'+cfg.backendPort+'/api',
+            url: 'https://'+cfg.domain+'/php/api.php',
             method: 'GET',
             data: data,
             success: function(response) {
@@ -174,7 +174,7 @@ class Delete extends Component {
         var data = {user: this.state.user, idx: e.target.value}
         console.log(data)
         $.ajax({
-            url: 'https://'+cfg.domain+':'+cfg.backendPort+'/postDel',
+            url: 'https://'+cfg.domain+'/php/postDel.php',
             method: 'post',
             data: data,
             success: function(response) {
@@ -190,7 +190,7 @@ class Delete extends Component {
 	var idx = e.target.value;
         console.log(data)
 
-	window.open('https://'+cfg.domain+':'+cfg.backendPort+'/download?user='+user+'&idx='+idx)
+	window.open('https://'+cfg.domain+'/php/download.php?user='+user+'&idx='+idx)
 
 
         this.fetch();
@@ -202,38 +202,39 @@ class Delete extends Component {
         console.log(util.inspect(this.state.myExps))
         var list = []
         const self = this;
-        for(var i=0; i<this.state.myExps.length; i++){
-            var exp = this.state.myExps[i]
-            var label = 'Container: '+exp.container+' '
-            var idx = exp.id
-            this.state.currentIds.push(idx)
-            var buttonVar = "primary"
-	    if(exp.status.substring(0,5) == 'error')
-	        buttonVar = "danger"
-	    var bv = ""
-	    if(exp.status.substring(0,8) == 'Complete') {
+	if(this.state.myExps != undefined)
+		for(var i=0; i<this.state.myExps.length; i++){
+		    var exp = this.state.myExps[i]
+		    var label = 'Container: '+exp.container+' '
+		    var idx = exp.id
+		    this.state.currentIds.push(idx)
+		    var buttonVar = "primary"
+		    if(exp.status.substring(0,5) == 'error')
+			buttonVar = "danger"
+		    var bv = ""
+		    if(exp.status.substring(0,8) == 'Complete') {
 
-	    	var bv =  <Button value={idx} variant={buttonVar} type="submit" onClick={e => this.handleDownload(e, "value")} >
-                            Download Results
-                        </Button>
-	    }
-	    var listItem =
-                <tr>
-                    <td>{exp.id}</td>
-                    <td>{exp.container}</td>
-                    <td>{exp.start_date}</td>
-                    <td>{exp.end_date}</td>
-		    <td>{exp.status} <br/> {bv} </td>
-                    <td>
-                        <Button value={idx} variant={buttonVar} type="submit" onClick={e => this.handleButtonInput(e, "value")} >
-                            Delete
-                        </Button>
-                    </td>
-                </tr>
-            list.push(listItem)
-        }
-        console.log('CURRENT IDS:')
-        console.log(this.state.currentIds)
+			var bv =  <Button value={idx} variant={buttonVar} type="submit" onClick={e => this.handleDownload(e, "value")} >
+				    Download Results
+				</Button>
+		    }
+		    var listItem =
+			<tr>
+			    <td>{exp.id}</td>
+			    <td>{exp.container}</td>
+			    <td>{exp.start_date}</td>
+			    <td>{exp.end_date}</td>
+			    <td>{exp.status} <br/> {bv} </td>
+			    <td>
+				<Button value={idx} variant={buttonVar} type="submit" onClick={e => this.handleButtonInput(e, "value")} >
+				    Delete
+				</Button>
+			    </td>
+			</tr>
+		    list.push(listItem)
+		}
+		console.log('CURRENT IDS:')
+		console.log(this.state.currentIds)
         return list
     }
     render() {

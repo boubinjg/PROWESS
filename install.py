@@ -2,7 +2,6 @@ import subprocess
 import argparse
 import os
 import time
-import mysql.connector
 import shutil
 import json
 import traceback
@@ -90,7 +89,7 @@ def config(args):
 		exit()
 
 	shutil.copyfile('config.json','Frontend/src/config.json')
-	shutil.copyfile('config.json','Backend/nodejs-server/server/config.json')
+	shutil.copyfile('config.json','Backend/php/config.json')
 	shutil.copyfile('config.json','Governor/config.json')
 
 	shutil.copyfile(data['sslcert'],'Backend/nodejs-server/server/cert.cer')
@@ -121,7 +120,6 @@ def frontend(args):
 		traceback.print_exc()
 		exit()
 
-
 	dir = data['webpath']
 
 	os.chdir('Frontend/')
@@ -131,8 +129,9 @@ def frontend(args):
 	
 	shutil.rmtree(dir)
 	shutil.copytree('build/',dir)
-	
-	if(args.shib):
+	shutil.copytree('build/',dir+'/delete')	
+
+	if(data['authtype'] == "shibboleth"):
 		shutil.copyfile('../secret/htaccess',dir+'/.htaccess')
 
 	os.chdir('../')
@@ -141,7 +140,7 @@ def frontend(args):
 		subprocess.check_call('systemctl restart httpd', shell=True)
 	except:
 		print('Failed to restart httpd. Please restart your apache service')
-	if(args.shib):
+	if(data['authtype'] == "shibboleth"):
 		try:	
 			subproess.check_call('systemctl restart shibd')
 		except:
@@ -258,7 +257,6 @@ if __name__ == "__main__":
     parser.add_argument('-backend',action="store_true", help='installs PROWESS backend server and database')
     parser.add_argument('-prowess_svc', action="store_true", help='installs the PROWESS governor application')
     parser.add_argument('-config',action="store_true", help='Configures PROWESS frontend, backend, and governor')
-    parser.add_argument('-shib',action="store_true", help="Configures shibboleth")
     parser.add_argument('-all', action="store_true", help='Flag to configure everything')
     
     args = parser.parse_args()
