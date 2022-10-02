@@ -161,7 +161,26 @@ def backend(args):
 	print('Installing Backend')
 	print('############################################################')
 	print('\n')
+	
+	data = None
+	try:
+		f = open('config.json')
+		data = json.load(f)
+	except:
+		print("Error Reading config.json, does it exist?")
+		print("Exiting Installer")
+		traceback.print_exc()
+		exit()
 
+
+
+	dir = data['webpath']+'/php/'
+	if os.path.exists(dir):
+    		shutil.rmtree(dir)	
+	shutil.copytree('./Backend/php/',dir)
+	
+	
+	'''
 	client = docker.from_env()
 
 	#Build Database Container
@@ -177,7 +196,7 @@ def backend(args):
 
 	ret = client.images.build(path=".", tag="prowess-backend")
 	print(ret)
-
+	'''
 	print('\n')
 	print('############################################################')
 	print('Backend Installation Complete')

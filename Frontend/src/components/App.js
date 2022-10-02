@@ -101,7 +101,7 @@ class App extends Component {
         //this.setState({id: this.state.id+1})
         var context = this;
         $.ajax({
-            url: 'https://'+cfg.domain+':'+cfg.backendPort+'/post',
+            url: 'https://'+cfg.domain+'/php/post.php',
             type: 'POST',
             data: jsondata,
             success: function(msg) {
@@ -120,14 +120,14 @@ class App extends Component {
         var context = this;
 
         $.ajax({
-            url: 'https://'+cfg.domain+':'+cfg.backendPort+'/api',
+            url: 'https://'+cfg.domain+'/php/api.php',
             method: 'GET',
             data: data,
             success: function(response) {
 		var resp = response.message
 		console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 		for (var key in response.message){
-			console.log(context.state.testbedData)
+			console.log(response.message)
 			//console.log(context.state.testbedData.length)
 			var tb = response.message[key].testbed
 			for(var i=0; i< context.state.testbedData.length ;++i){
@@ -171,7 +171,7 @@ class App extends Component {
 	console.log('###################')
 	var context = this
         $.ajax({
-            url: 'https://'+cfg.domain+':'+cfg.backendPort+'/testbeds',
+            url: 'https://'+cfg.domain+'/php/testbeds.php',
             method: 'GET',
             data: data,
             success: function(response) {
@@ -188,7 +188,7 @@ class App extends Component {
     	console.log('FETCH TB Results')
 	var context = this
         $.ajax({
-            url: 'https://'+cfg.domain+':'+cfg.backendPort+'/testbedres?name='+name,
+            url: 'https://'+cfg.domain+'/php/testbedres.php?name='+name,
             method: 'GET',
             data: data,
             success: function(response) {
@@ -196,12 +196,12 @@ class App extends Component {
                     testbedRes: response.message
                 });
 		console.log(context.state.testbedSelect)
-		console.log('TB Response:')
+		console.log('TestbedRes Response:')
 		console.log(response.message)
 		console.log(response.message[0])
 
-		context.setState({ram: 0})
-		context.setState({cpu: 0})
+		context.setState({ram: 1})
+		context.setState({cpu: 1})
 
 		context.setState({tbRam: response.message[0]})
 		context.setState({tbCpu: response.message[1]})

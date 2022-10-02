@@ -12,8 +12,8 @@ var http = require('http')
 var fs = require('fs')
 
 var options = {
-   key: fs.readFileSync('/home/server/client-key.pem'),
-   cert: fs.readFileSync('/home/server/cert.cer')
+   key: fs.readFileSync('client-key.pem'),
+   cert: fs.readFileSync('cert.cer')
 };
 
 const util = require('util')
@@ -24,9 +24,11 @@ var cors = require('cors');
 var mysql = require('mysql')
 var moment = require('moment')
 
-var SamlStrategy = require('passport-saml').Strategy;
-app.use(cors({origin: 'https://'+cfg.domain}));
-https.createServer(options, app).listen(cfg.backendPort);
+//var SamlStrategy = require('passport-saml').Strategy;
+//app.use(cors({origin: 'https://'+cfg.domain}));
+
+//https.createServer(options, app).listen(cfg.backendPort);
+app.listen(3001, () => {})
 
 app.use(bodyParser.urlencoded({ extend: true }));
 
@@ -326,4 +328,5 @@ app.post("/post", (req, res) => {
     res.sendStatus(200);
 
 });
+
 

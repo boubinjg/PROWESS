@@ -25,4 +25,9 @@ spec:
           value: "my-secret-pw"
         args: ["--default-authentication-plugin=mysql_native_password"]
         imagePullPolicy: IfNotPresent
+      - image: prowess-backend:latest
+        name: prowess-backend
+        ports:
+        - containerPort: 3001
+        imagePullPolicy: IfNotPresent
 

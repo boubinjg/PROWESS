@@ -54,3 +54,6 @@ def init():
 
     loadTestbeds(cursor)
     cnx.commit()
+
+if __name__ == "__main__":
+	init()
