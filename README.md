@@ -8,7 +8,7 @@ PROWESS defines experiments as sets of Docker containers which are orchestrated 
 
 PROWESS relies on a core-hub/edge-hub model. Core-hubs are compute resources which host PROWESS software and experimentation infrastructure. Edge-hubs are geographically and computationally diverse compute resources and testbeds on which PROWESS experiments can be scheduled. This model allows PROWESS to position its core software at the heart of an institution while integrating testbeds and far-away resources with little additional investment. 
 
-[PROWESS Experimentation](https://jaysonboubin.com/images/PROWESS_OVERVIEW.png)	
+![PROWESS Experimentation](https://jaysonboubin.com/images/PROWESS_OVERVIEW.png)	
 
 How to use PROWESS: You can incorporate PROWESS into your institution in three simple steps: 
     1) Install PROWESS software onto one or more core-hubs.
