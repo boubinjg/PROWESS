@@ -9,45 +9,12 @@ import os
 import docker
 
 def startup():
-    print('############################################################')
-    print('# PROWESS Experiment Scheduler Install Script              #')
-    print('#                                                          #')
-    print('# This Script Does the following:                          #')
-    print('# 1) initializes Kubernetes on a list of remote machines   #')
-    print('# 2) Starts Scheduling Webapp                              #')
-    print('# 3) Shut Down System                                      #')
-    print('#                                                          #')
-    print('# Before you begin, make sure the following are all true:  #')
-    print('# 1) All nodes have Kubernetes installed                   #')
-    print('# 2) Helm is installed on the master                       #')
-    print('# 3) Your current user has access to Kubernetes and helm   #')
-    print('# 4) You have specified all remote machines in the         #')
-    print('#    remote.cfg file in this directory                     #')
-    print('# 6) All hosts have an account named \'kube\'              #')
-    print('# 5) Your current user has passwordless login access to    #')
-    print('#    all machines listed in remote.cfg via a kube account  #')
-    print('# 7) All kube accounts have passwordless sudo access       #')
-    print('############################################################')
-    print('############################################################')
-    print('# Arguments:                                               #')
-    print('# -kube:     Configure kubernetes cluster                  #')
-    print('# -install:  install necessary helm charts                 #')
-    print('# -webapp:   starts the scheduling webapp                  #')
-    print('# -all:      -hdfs + -install                              #')
-    print('# -shutdown: shuts down the cluster and webapp             #')
-    print('# -user:     Kubernetes master user (Required for -kube    #')
-    print('# -d:        print debug information                       #')
-    print('############################################################')
-    print('############################################################')
-    print('# If all conditions are satisfied, press y to continue     #')
-    print('# else, press any other key to abort                       #')
-    print('############################################################')
-
+    return;
 def debugPrint(out, err):
     print('Output: ')
     print(out)
     print('Error: ')
-   
+
 def execute(command, args):
 	process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	stdout, stderr = process.communicate()
@@ -94,7 +61,7 @@ def config(args):
 
 	shutil.copyfile(data['sslcert'],'Backend/nodejs-server/server/cert.cer')
 	shutil.copyfile(data['publickey'],'Backend/nodejs-server/server/client-key.pem')
-	
+
 	print('\n')
 	print('############################################################')
 	print('Configuration Complete')
@@ -126,10 +93,10 @@ def frontend(args):
 
 	subprocess.check_call('npm install', shell=True)
 	subprocess.check_call('npm run build', shell=True)
-	
+
 	shutil.rmtree(dir)
 	shutil.copytree('build/',dir)
-	shutil.copytree('build/',dir+'/delete')	
+	shutil.copytree('build/',dir+'/delete')
 
 	if(data['authtype'] == "shibboleth"):
 		shutil.copyfile('../secret/htaccess',dir+'/.htaccess')
@@ -141,7 +108,7 @@ def frontend(args):
 	except:
 		print('Failed to restart httpd. Please restart your apache service')
 	if(data['authtype'] == "shibboleth"):
-		try:	
+		try:
 			subproess.check_call('systemctl restart shibd')
 		except:
 			print('Failed to restart shibd. Please restart your shibboleth service')
@@ -160,7 +127,7 @@ def backend(args):
 	print('Installing Backend')
 	print('############################################################')
 	print('\n')
-	
+
 	data = None
 	try:
 		f = open('config.json')
@@ -175,10 +142,10 @@ def backend(args):
 
 	dir = data['webpath']+'/php/'
 	if os.path.exists(dir):
-    		shutil.rmtree(dir)	
+    		shutil.rmtree(dir)
 	shutil.copytree('./Backend/php/',dir)
-	
-	
+
+
 	'''
 	client = docker.from_env()
 
@@ -190,7 +157,7 @@ def backend(args):
 	print(ret)
 
 	#Build Backend Container
-	
+
 	os.chdir('../../Backend/nodejs-server')
 
 	ret = client.images.build(path=".", tag="prowess-backend")
@@ -208,7 +175,7 @@ def governor(args):
 	print('Installing PROWESS Service')
 	print('############################################################')
 	print('\n')
-	
+
 	try:
 		shutil.rmtree('/opt/prowess')
 	except:
@@ -216,7 +183,7 @@ def governor(args):
 	shutil.copytree('Governor','/opt/prowess')
 
 	shutil.copyfile('Service/prowess.service','/etc/systemd/system/prowess.service')
- 
+
 	print('\n')
 	print('############################################################')
 	print('PROWESS Service Installation Complete')
@@ -225,26 +192,22 @@ def governor(args):
 	return;
 
 def main(args):
-    #startup()
-    #val = input('Continue? (y/n): ')
-    #if(val[0] != 'y'):
-    if(False):
+    print('############################################################')
+    print('# Installing PROWESS                                       #')
+    print('############################################################')
+
+    if(not (args.frontend or args.backend or args.prowess_svc or args.config or args.all)):
+        print('No Installation Options Specified')
         print('Exiting')
-    else:
-        print('Beginning Installation')
-      	    
-        if(not (args.frontend or args.backend or args.prowess_svc or args.config or args.all)):
-            print('No Installation Options Specified')
-            print('Exiting')
-            exit()
-        if(args.config or args.all):
-            config(args)
-        if(args.frontend or args.all):
-            frontend(args)
-        if(args.backend or args.all):
-            backend(args)
-        if(args.prowess_svc or args.all):
-            governor(args)
+        exit()
+    if(args.config or args.all):
+        config(args)
+    if(args.frontend or args.all):
+        frontend(args)
+    if(args.backend or args.all):
+        backend(args)
+    if(args.prowess_svc or args.all):
+        governor(args)
 
     print('############################################################')
     print('# Installation  Complete                                   #')
@@ -258,6 +221,6 @@ if __name__ == "__main__":
     parser.add_argument('-prowess_svc', action="store_true", help='installs the PROWESS governor application')
     parser.add_argument('-config',action="store_true", help='Configures PROWESS frontend, backend, and governor')
     parser.add_argument('-all', action="store_true", help='Flag to configure everything')
-    
+
     args = parser.parse_args()
     main(args)
