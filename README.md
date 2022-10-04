@@ -105,6 +105,8 @@ PROWESS is constantly under development. In the near future, the PROWESS team pl
 
 ### Who are we?
 
+PROWESS Started at Ohio State University in 2020. It has grown over the years to Binghamton University in 2022 and hopefully will grow further in the years to come. We are always looking for new ideas and new collaborators. If you are interested in collaborating, reach out to Jayson or Anish. 
+
 #### PIs
 
 * **[Jayson Boubin](http://jaysonboubin.com)** - *Lead Developer* - Assistant Professor at Binghamton University (BU)
