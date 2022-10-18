@@ -251,6 +251,7 @@ class App extends Component {
     }
 
     componentDidMount(){
+        document.title = "Home | OSU PROWESS"
         console.log('Mounting!')
         this.fetchTBs();
 	this.fetch();

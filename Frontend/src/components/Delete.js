@@ -164,6 +164,7 @@ class Delete extends Component {
         });
     }
     componentDidMount(){
+        document.title = "Experiment Manager | OSU PROWESS"
         console.log('Mounting!')
         this.fetch();
 	this.fetchShib();
