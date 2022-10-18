@@ -3,3 +3,4 @@
 *.cer
 
 build/
+.cache/
