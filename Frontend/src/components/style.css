@@ -1,0 +1,64 @@
+.color-nav-prowess {
+    background-color: #bb0000;
+}
+body {
+    background-color: white;
+}
+p{
+    color: #666666;
+}
+h1{
+    color: #666666;
+}
+
+.btn-primary {
+    background-color: #bb0000;
+    border-color: #bb0000;
+}
+.btn-primary:hover {
+    background-color: #666666;
+    border-color: #666666;
+}
+.btn-primary:focus {
+    background-color: #666666;
+    border-color: #666666;
+}
+.btn:active {
+    background-color: #666666;
+    border-color: #666666;
+}
+.btn-primary:visited {
+    background-color: #666666;
+    border-color: #666666;
+}
+
+.dhx_cal_tab{
+    background-color: #bb0000;
+    border-color: #bb0000;
+    font-color: white;
+    color: white;
+    box-shadow:none;
+    border-left-color: green !important;
+    padding: 10px;
+}
+.dhx_cal_tab:hover{
+    color:#666666;
+    box-shadow:none;
+}
+.dhx_cal_tab.active{
+    background-color: #666666;
+    border-color: #bb0000;
+}
+.dhx_cal_tab.active:hover{
+    background-color: white;
+    color:#666666;
+}
+.dhx_cal_today_button{
+    color:#666666;
+}
+.dhx_cal_next_button{
+    color:#666666;
+}
+.dhx_cal_prev_button{
+    color:#666666;
+}

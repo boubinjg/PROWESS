@@ -15,6 +15,7 @@ import '../App.css';
 import $ from 'jquery';
 import { saveAs } from 'file-saver'
 import * as JSZip from 'jszip'
+import "./style.css"
 
 const data = [];
 const cfg = require('../config.json')
@@ -242,7 +243,7 @@ class Delete extends Component {
 
         return (
             <div>
-                <Navbar className="color-nav" expand='xl'>
+                <Navbar className="color-nav-prowess" expand='xl'>
                   <Navbar.Brand href="#home">Pomerene Lab IoT Testbed Experiment Scheduler</Navbar.Brand>
                   <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   <Navbar.Collapse id="basic-navbar-nav">

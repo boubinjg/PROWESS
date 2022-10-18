@@ -14,6 +14,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '../App.css';
 import $ from 'jquery';
 import Select from 'react-select';
+import './style.css'
 
 const util = require('util')
 const cfg = require('../config.json')
@@ -511,7 +512,7 @@ class App extends Component {
     render() {
 	return (
             <div>
-                <Navbar className="color-nav" expand='xl'>
+                <Navbar className="color-nav-prowess" expand='xl'>
                   <Navbar.Brand href="#home">Pomerene Lab IoT Testbed Experiment Scheduler</Navbar.Brand>
                   <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   <Navbar.Collapse id="basic-navbar-nav">
