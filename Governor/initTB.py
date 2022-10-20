@@ -8,7 +8,7 @@ import json
 
 def loadTestbeds(cursor):
 
-	for f in glob.glob('./profiles/*'):
+	for f in glob.glob('/opt/prowess/profiles/*'):
 		cmd = 'INSERT INTO testbed_entries (name, hostname, ram, cpus, sensors, hardware, eventcolor) VALUES '
 
 		with io.open(f, 'r') as stream:
@@ -39,7 +39,7 @@ def loadTestbeds(cursor):
 
 #Loads all testbed entries present in /profiles into the PROWESS database
 def init():
-    f = open('config.json')
+    f = open('/opt/prowess/config.json')
     configData = json.load(f)
 
     cnx = mysql.connector.connect(user='root',

@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: experiment83
+spec:
+  nodeName: tdai-r815
+  containers:
+  - image: f
+    name: experiment83-0
+    volumeMounts:
+    - name: volume83-0
+      mountPath: /output
+  volumes:
+  - name: volume83-0
+    hostPath:
+      path: /edgestorage/83-output
+  - name: dev-sdn83
+    hostPath:
+      path: /dev/sdn
+  - name: p3783
+    hostPath:
+      path: /home/gnuradio/persistent/83

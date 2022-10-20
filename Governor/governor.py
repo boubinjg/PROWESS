@@ -66,7 +66,7 @@ def updateStatus(id, status):
 def buildYAML(job, status):
 	uid = job[0]
 	YAML = job[3]
-	with open('jobs/experiment_YAML'+str(uid), 'w') as f:
+	with open('/opt/prowess/jobs/experiment_YAML'+str(uid), 'w') as f:
 		f.write(YAML)
 
 
@@ -118,7 +118,7 @@ def buildCron(job, status, node):
 			yaml += "      path: /edgestorage/"+str(uid)+"-"+str(vcount)+"\n"
 			vcount += 1
 
-	with open('jobs/experiment'+str(uid), 'w') as f:
+	with open('/opt/prowess/jobs/experiment'+str(uid), 'w') as f:
 		f.write(yaml)
 
 	print('Kubernetes YAML file built for experiment '+str(uid))
@@ -157,11 +157,11 @@ def addToSchedule(job, uid, Cont, Yaml, name):
 
 def startJob(job):
 	if(job.YAML):
-		proc = subprocess.Popen(['kubectl','apply','-f', 'jobs/experiment_YAML'+str(job.uid)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		proc = subprocess.Popen(['kubectl','apply','-f', '/opt/prowess/jobs/experiment_YAML'+str(job.uid)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	out, err = proc.communicate()
 
 	if(job.CONT):
-		proc = subprocess.Popen(['kubectl','apply','-f', 'jobs/experiment'+str(job.uid)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		proc = subprocess.Popen(['kubectl','apply','-f', '/opt/prowess/jobs/experiment'+str(job.uid)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		out, err = proc.communicate()
 
 	waitQueue.remove(job)
@@ -229,6 +229,7 @@ def findNode(job):
 	testbed = job[10]
 	query = "select hostname from calendar.testbed_entries where name=\"" + job[10]  + "\""
 	res = executeQuery(query)
+	print(res)
 	node = res[0][0]
 	return node
 
@@ -253,7 +254,6 @@ def scheduleJob(job):
 		print(node)
 		
 		uid = buildCron(job, status, node)
-		exit()
 		CONT = True
 
 	if(YAML != ""):
@@ -275,7 +275,7 @@ def initTestbedTable():
 
 def initConfig():
 	global configData
-	f = open('config.json')
+	f = open('/opt/prowess/config.json')
 	configData = json.load(f)
 
 if __name__ == "__main__":
