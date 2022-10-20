@@ -1,4 +1,4 @@
-# ![PROWESS Logo](http://jaysonboubin.com/PROWESS.png)
+# ![PROWESS Logo](http://jaysonboubin.com/images/PROWESS.png)
 
 # PROWESS:
 
