@@ -514,7 +514,11 @@ class App extends Component {
 	return (
             <div>
                 <Navbar className="color-nav-prowess" expand='xl'>
-                  <Navbar.Brand href="#home">Pomerene Lab IoT Testbed Experiment Scheduler</Navbar.Brand>
+                  <Navbar.Brand href="/">
+
+                    <img src="./PROWESS_bg.png" alt="PROWESS logo" height={50} />
+
+                  </Navbar.Brand>
                   <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
