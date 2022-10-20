@@ -28,7 +28,7 @@ How to use PROWESS: You can incorporate PROWESS into your institution in three s
 
 To start using PROWESS, you must first install and configure all prerequisite software including Kubernetes and Apache. Assure that you have an Apache web server configured to host PROWESS at a specific web address, which we will call $PROWESS_ADDR. Next, assure that your Kubernetes cluster is functioning, and that your core-hub is configured to be the Kubernetes master node. You may configure your core-hub to run PROWESS experiments directly by untainting it. 
 
-Next, clone this repository into a directory on your PROWESS core-hub. We will refer to the top level of this directory as $PROWESS throughout this guide. 
+Next, clone this repository into a directory on your PROWESS core-hub. We will refer to the top level of this directory as $PROWESS throughout this guide. Finally, Assure that you have installed all requisite python libraries available in the requirements.txt file. 
 
 ### Configuration:
 
@@ -105,7 +105,7 @@ PROWESS is constantly under development. In the near future, the PROWESS team pl
 
 ### Who are we?
 
-PROWESS Started at Ohio State University in 2020. It has grown over the years to Binghamton University in 2022 and hopefully will grow further in the years to come. We are always looking for new ideas and new collaborators. If you are interested in collaborating, reach out to Jayson or Anish. 
+PROWESS Started at Ohio State University in 2020. It has grown to Binghamton University in 2022 and hopefully will grow further in the years to come. We are always looking for new ideas and new collaborators. If you are interested in collaborating, reach out to Jayson or Anish. 
 
 #### PIs
 
