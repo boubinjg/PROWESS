@@ -22,9 +22,10 @@
 	function checkExp($newExp, $conn){
 		$st = $newExp['start'];
 		$et = $newExp['end'];
+		$tb = $newExp['testbed'];
 
-		$query = "select * from calendar.calendar_entries where start_date+start_time <= STR_TO_DATE('$et', '%Y-%m-%d %H:%i:%s') and STR_TO_DATE('$st', '%Y-%m-%d %H:%i:%s') <= end_date+end_time;";
-	
+		$query = "select * from calendar.calendar_entries where start_date+start_time <= STR_TO_DATE('$et', '%Y-%m-%d %H:%i:%s') and STR_TO_DATE('$st', '%Y-%m-%d %H:%i:%s') <= end_date+end_time and testbed = '$tb' ;";
+
 		$query2 = "select cpus, ram from calendar.testbed_entries where name = \"" . $newExp['testbed'] . "\"";
 		$result = $conn->query($query);
 

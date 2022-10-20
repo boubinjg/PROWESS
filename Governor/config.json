@@ -8,5 +8,5 @@
     "sslcert":"secret/cert.cer",
     "publickey":"secret/client-key.pem",
     "webpath":"/var/www/iot.lab.tdai.osu.edu/html",
-    "authtype":"none"
+    "authtype":"shibboleth"
 }

@@ -59,8 +59,8 @@ def config(args):
 	shutil.copyfile('config.json','Backend/php/config.json')
 	shutil.copyfile('config.json','Governor/config.json')
 
-	shutil.copyfile(data['sslcert'],'Backend/nodejs-server/server/cert.cer')
-	shutil.copyfile(data['publickey'],'Backend/nodejs-server/server/client-key.pem')
+	#shutil.copyfile(data['sslcert'],'Backend/nodejs-server/server/cert.cer')
+	#shutil.copyfile(data['publickey'],'Backend/nodejs-server/server/client-key.pem')
 
 	print('\n')
 	print('############################################################')
