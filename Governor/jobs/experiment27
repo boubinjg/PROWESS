@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: experiment27
+spec:
+  containers:
+  - image: aaa
+    name: experiment27-0
+    volumeMounts:
+    - name: volume27-0
+      mountPath: /output
+    - name: volume27-1
+      mountPath: /ccc
+  volumes:
+  - name: volume27-0
+    hostPath:
+      path: /edgestorage/27-output
+  - name: dev-sdn27
+    hostPath:
+      path: /dev/sdn
+  - name: p3727
+    hostPath:
+      path: /home/gnuradio/persistent/27
+  - name: volume27-1
+    hostPath:
+      path: /edgestorage/27-1

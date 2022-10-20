@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: experiment25
+spec:
+  containers:
+  - image: aaa
+    name: experiment25-0
+    volumeMounts:
+    - name: volume25-0
+      mountPath: /output
+    - name: volume25-1
+      mountPath: /ccc
+  volumes:
+  - name: volume25-0
+    hostPath:
+      path: /edgestorage/25-output
+  - name: dev-sdn25
+    hostPath:
+      path: /dev/sdn
+  - name: p3725
+    hostPath:
+      path: /home/gnuradio/persistent/25
+  - name: volume25-1
+    hostPath:
+      path: /edgestorage/25-1

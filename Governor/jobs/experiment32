@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: experiment32
+spec:
+  containers:
+  - image: aaa
+    name: experiment32-0
+    volumeMounts:
+    - name: volume32-0
+      mountPath: /output
+    - name: volume32-1
+      mountPath: /ccc
+  volumes:
+  - name: volume32-0
+    hostPath:
+      path: /edgestorage/32-output
+  - name: dev-sdn32
+    hostPath:
+      path: /dev/sdn
+  - name: p3732
+    hostPath:
+      path: /home/gnuradio/persistent/32
+  - name: volume32-1
+    hostPath:
+      path: /edgestorage/32-1

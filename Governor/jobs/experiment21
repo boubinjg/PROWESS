@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: experiment21
+spec:
+  containers:
+  - image: aaa
+    name: experiment21-0
+    volumeMounts:
+    - name: volume21-0
+      mountPath: /output
+    - name: volume21-1
+      mountPath: /ccc
+  volumes:
+  - name: volume21-0
+    hostPath:
+      path: /edgestorage/21-output
+  - name: dev-sdn21
+    hostPath:
+      path: /dev/sdn
+  - name: p3721
+    hostPath:
+      path: /home/gnuradio/persistent/21
+  - name: volume21-1
+    hostPath:
+      path: /edgestorage/21-1

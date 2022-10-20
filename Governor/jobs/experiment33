@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: experiment33
+spec:
+  containers:
+  - image: aaa
+    name: experiment33-0
+    volumeMounts:
+    - name: volume33-0
+      mountPath: /output
+    - name: volume33-1
+      mountPath: /ccc
+  volumes:
+  - name: volume33-0
+    hostPath:
+      path: /edgestorage/33-output
+  - name: dev-sdn33
+    hostPath:
+      path: /dev/sdn
+  - name: p3733
+    hostPath:
+      path: /home/gnuradio/persistent/33
+  - name: volume33-1
+    hostPath:
+      path: /edgestorage/33-1

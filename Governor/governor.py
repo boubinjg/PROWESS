@@ -48,6 +48,8 @@ def executeQuery(query):
 
 def checkForNewJobs(date):
 	curJobList = []
+	print(today)
+
 	select = 'select * from calendar_entries where `start_date` >= STR_TO_DATE(\''+today+' 00:00:00\', \'%d/%m/%Y %H:%i:%s\');'
 
 	obj = executeQuery(select)
@@ -68,7 +70,7 @@ def buildYAML(job, status):
 		f.write(YAML)
 
 
-def buildCron(job, status):
+def buildCron(job, status, node):
 	sdr = job[-2]
 	uid = job[0]
 	containers = job[2].split(',')
@@ -80,6 +82,7 @@ def buildCron(job, status):
 	yaml +=	"metadata:\n"
 	yaml += "  name: experiment"+str(uid)+"\n"
 	yaml += "spec:\n"
+	yaml += "  nodeName: "+node+"\n"
 	yaml +=	"  containers:\n"
 	count = 0
 	for c in containers:
@@ -222,6 +225,12 @@ def endJob(job):
 	updateStatus(job.uid, status)
 	shutil.make_archive('/edgestorage/export/'+str(job.uid), 'zip','/edgestorage/'+str(job.uid)+'-output/')
 
+def findNode(job):
+	testbed = job[10]
+	query = "select hostname from calendar.testbed_entries where name=\"" + job[10]  + "\""
+	res = executeQuery(query)
+	node = res[0][0]
+	return node
 
 def scheduleJob(job):
 	uid = job[0]
@@ -240,7 +249,11 @@ def scheduleJob(job):
 	name = 'experiment'+str(uid)
 
 	if(containers[0] != ""):
-		uid = buildCron(job, status)
+		node = findNode(job)
+		print(node)
+		
+		uid = buildCron(job, status, node)
+		exit()
 		CONT = True
 
 	if(YAML != ""):
@@ -276,8 +289,7 @@ if __name__ == "__main__":
                 freshJobs = checkForNewJobs(today)
 
                 print(freshJobs)
-                exit()
-
+               
                 for job in freshJobs:
                     if(job[0] not in jobList):
                         scheduleJob(job)
@@ -293,4 +305,3 @@ if __name__ == "__main__":
 
                 print('sleep')
                 time.sleep(10)
-        exit()

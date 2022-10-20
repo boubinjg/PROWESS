@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: experiment36
+spec:
+  nodeName: tdai-r815
+  containers:
+  - image: hello-world
+    name: experiment36-0
+    volumeMounts:
+    - name: volume36-0
+      mountPath: /output
+  volumes:
+  - name: volume36-0
+    hostPath:
+      path: /edgestorage/36-output
+  - name: dev-sdn36
+    hostPath:
+      path: /dev/sdn
+  - name: p3736
+    hostPath:
+      path: /home/gnuradio/persistent/36

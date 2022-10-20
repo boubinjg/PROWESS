@@ -52,6 +52,9 @@ def init():
     cmd = 'USE calendar;'
     cursor.execute(cmd)
 
+    cmd = 'delete from testbed_entries;'
+    cursor.execute(cmd)
+
     loadTestbeds(cursor)
     cnx.commit()
 
