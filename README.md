@@ -21,6 +21,7 @@ How to use PROWESS: You can incorporate PROWESS into your institution in three s
 * [Python](https://www.python.org/) >=3.6
 * [Docker](https://www.docker.com/) >= 20.10
 * [Kubernetes](https://kubernetes.io/) >= 1.20
+* [Node.js](https://nodejs.org/en/) >= 17.0
 * Optional: [Shibboleth](https://www.shibboleth.net/) >=v3.2
 * Optional: A distributed file system (i.e NFS)
 
